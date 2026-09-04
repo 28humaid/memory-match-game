@@ -1,78 +1,21 @@
-# React + TypeScript + Vite
+# Memory Match — 2 Player Rules
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A classic memory matching game with a twist: mistakes cost you the whole board, not just your last move.
 
-Currently, two official plugins are available:
+## Setup
+- Enter two player names when the game loads (or skip to use the defaults).
+- The board is a grid of face-down cards, each icon appearing exactly twice.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## How to Play
+1. Players take turns. On your turn, flip two cards by clicking them.
+2. **If the icons match:** the pair stays face-up, you score the match, and **you go again** — your turn continues until you miss.
+3. **If the icons don't match:** after a brief pause, **the entire board flips face-down again** — including any pairs matched earlier in the game, by either player — and the turn passes to the other player.
 
-## React Compiler
+## The Catch
+Because a single miss resets *everything*, not just your two cards, the risk grows the further into the game you get. Getting greedy on turn 20 can undo an entire board's worth of progress. Flip only when you're confident — memorize carefully, and don't push your luck.
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+## Winning
+The game ends when every pair has been matched in the same uninterrupted run (no miss has occurred since). The player whose turn it was when the last pair was matched wins.
 
-Note: This will impact Vite dev & build performances.
-You can also try [the experimental native React Compiler support in plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md#rust-react-compiler) by using `compiler: true` in the plugin options instead of using the Babel plugin.
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
-```
-
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
-```
+## Strategy Tip
+Watching your opponent's flips is free information — but so is giving it away. Every card you reveal (even on a miss) is a card the other player now knows the location of.
