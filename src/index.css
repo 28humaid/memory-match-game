@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Caacupe+One&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+  --color-navy-dark: #1B2A5C;
+  --color-mauve: #C38EB4;
+  --color-blush: #E1CBD7;
+  --color-blue: #86A8CF;
+  --color-slate: #26425A;
+  --color-black-navy: #0D1521;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: 'Caacupe One', 'Roboto', sans-serif;
+  background: linear-gradient(
+    160deg,
+    var(--color-navy-dark) 0%,
+    var(--color-slate) 35%,
+    var(--color-blue) 65%,
+    var(--color-blush) 100%
+  );
+  color: var(--color-blush);
+}
+
+button {
+  font-family: inherit;
+}
