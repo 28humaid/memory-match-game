@@ -48,10 +48,10 @@ const MemoryGame = () => {
     }
     
     return (
-        <div style={{ maxWidth: 420, margin: "40px auto", textAlign: "center" }}>
-  <h1 style={{ marginBottom: 4, color: "var(--color-blush)" }}>Memory Match</h1>
+        <div style={{ maxWidth: 420, margin: "30px auto", textAlign: "center" }}>
+  <h1 style={{ marginBottom: 2, color: "var(--color-blush)" }}>Memory Match</h1>
 
-  <p style={{ color: "var(--color-blush)" }}>
+  <p style={{ color: "var(--color-blush)",fontSize:"20px" }}>
     {won ? `${players[turn]} wins! 🎉` : `${players[turn]}'s turn`}
   </p>
 
