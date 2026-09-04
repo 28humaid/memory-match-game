@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import DeckBuilder from "./DeckBuilder";
 import Grid from "./Grid";
 import PlayerForm from "./PlayerForm";
+import confetti from "canvas-confetti";
+import WinModal from "./WinModal";
 
 
 const MemoryGame = () => {
@@ -32,6 +34,15 @@ const MemoryGame = () => {
         }
     },[selected,cards]);
 
+    useEffect(() => {
+      if (!won) return;
+      confetti({
+        particleCount: 150,
+        spread: 90,
+        origin: { y: 0.6 },
+      });
+    }, [won]);
+
 
     function handleClick(index:number){
         if (selected.length === 2) return;
@@ -51,7 +62,16 @@ const MemoryGame = () => {
         <div style={{ maxWidth: 420, margin: "30px auto", textAlign: "center" }}>
   <h1 style={{ marginBottom: 2, color: "var(--color-blush)" }}>Memory Match</h1>
 
-  <p style={{ color: "var(--color-blush)",fontSize:"20px" }}>
+  <p
+    style={{
+      display: "inline-block",
+      padding: "6px 16px",
+      borderRadius: 20,
+      background: "var(--color-navy-dark)",
+      color: "var(--color-blush)",
+      fontWeight: 600,
+    }}
+  >
     {won ? `${players[turn]} wins! 🎉` : `${players[turn]}'s turn`}
   </p>
 
@@ -75,6 +95,8 @@ const MemoryGame = () => {
   {showForm && (
     <PlayerForm onSubmit={(names) => setPlayers(names)} onClose={() => setShowForm(false)} />
   )}
+
+  {won && <WinModal winner={players[turn]} onPlayAgain={reset} />}
 </div>
     )
 }
